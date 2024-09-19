@@ -6,7 +6,7 @@
 /*   By: tecker <tecker@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 14:28:08 by tecker            #+#    #+#             */
-/*   Updated: 2024/09/17 14:57:50 by tecker           ###   ########.fr       */
+/*   Updated: 2024/09/19 14:55:51 by tecker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 class PhoneBook
 {
     public:
-        Contact *Contacts[8];
-        Contact last;
+        Contact Contacts[8];
+        int max_index;
         int index;
         
         void    add(void);

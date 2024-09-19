@@ -6,7 +6,7 @@
 /*   By: tecker <tecker@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 14:27:47 by tecker            #+#    #+#             */
-/*   Updated: 2024/09/17 15:11:37 by tecker           ###   ########.fr       */
+/*   Updated: 2024/09/19 15:07:51 by tecker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,9 @@ int main(void)
         if (res == -1)
             exit(0);
         else if (res == 1)
-        {
-            std::cout << "add\n";
             pbook.add();
-        }
         else if (res == 2)
-        {
-            std::cout << "search\n";
             pbook.search();
-        }
-        else
-            std::cout << "wrong\n";
-
     }
     
     return (0);
