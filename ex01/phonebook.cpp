@@ -6,7 +6,7 @@
 /*   By: tecker <tecker@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 14:27:57 by tecker            #+#    #+#             */
-/*   Updated: 2024/09/19 15:06:48 by tecker           ###   ########.fr       */
+/*   Updated: 2024/09/20 11:34:38 by tecker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int check_input(std::string input, int flag)
 void    PhoneBook::add(void)
 {
     bool flag = true;
+    std::string input;
 
     if (this->index >= 8)
         this->index = 0;
@@ -67,41 +68,56 @@ void    PhoneBook::add(void)
     while(flag)
     {
         std::cout << "\033[2J\033[H" << "first name: ";
-        getline(std::cin, this->Contacts[this->index].first_name);
-        if (!check_input(this->Contacts[this->index].first_name, 1))
+        getline(std::cin, input);
+        if (!check_input(input, 1))
+        {
+            this->Contacts[this->index].set_fn(input);
             flag = false;
+        }
     }
     
     while(!flag)
     {
         std::cout << "\033[2J\033[H" << "last name: ";
-        getline(std::cin, this->Contacts[this->index].last_name);
-        if (!check_input(this->Contacts[this->index].last_name, 1))
+        getline(std::cin, input);
+        if (!check_input(input, 1))
+        {
+            this->Contacts[this->index].set_ln(input);
             flag = true;
+        }
     }
 
     while(flag)
     {
         std::cout << "\033[2J\033[H" << "nick-name: ";
-        getline(std::cin, this->Contacts[this->index].nickname);
-        if (!check_input(this->Contacts[this->index].nickname, 2))
+        getline(std::cin, input);
+        if (!check_input(input, 2))
+        {
+            this->Contacts[this->index].set_nn(input);
             flag = false;
+        }
     }
 
     while(!flag)
     {
         std::cout << "\033[2J\033[H" << "phonenumber: ";
-        getline(std::cin, this->Contacts[this->index].phonenumber);
-        if (!check_input(this->Contacts[this->index].phonenumber, 0))
+        getline(std::cin, input);
+        if (!check_input(input, 0))
+        {
+            this->Contacts[this->index].set_phone(input);
             flag = true;
+        }
     }
     
     while(flag)
     {
         std::cout << "\033[2J\033[H" << "darkest secret: ";
-        getline(std::cin, this->Contacts[this->index].darkest_secret);
-        if (!check_input(this->Contacts[this->index].darkest_secret, 2))
+        getline(std::cin, input);
+        if (!check_input(input, 2))
+        {
+            this->Contacts[this->index].set_ds(input);
             flag = false;
+        }
     }
     this->index++;
     if (this->index > this->max_index)
@@ -128,11 +144,11 @@ void    PhoneBook::display_contact(int index)
 {
     std::string input;
 
-    std::cout << "\033[2J\033[H" << "first name        : " << check_contact(this->Contacts[index].first_name) << std::endl;
-    std::cout << "last name         : " << check_contact(this->Contacts[index].last_name) << std::endl;
-    std::cout << "nick name         : " << check_contact(this->Contacts[index].nickname) << std::endl;
-    std::cout << "phonenuber        : " << check_contact(this->Contacts[index].phonenumber) << std::endl;
-    std::cout << "darkest secret    : " << check_contact(this->Contacts[index].darkest_secret) << std::endl;
+    std::cout << "\033[2J\033[H" << "first name        : " << check_contact(this->Contacts[index].get_fn()) << std::endl;
+    std::cout << "last name         : " << check_contact(this->Contacts[index].get_ln()) << std::endl;
+    std::cout << "nick name         : " << check_contact(this->Contacts[index].get_nn()) << std::endl;
+    std::cout << "phonenuber        : " << check_contact(this->Contacts[index].get_phone()) << std::endl;
+    std::cout << "darkest secret    : " << check_contact(this->Contacts[index].get_ds()) << std::endl;
 
     std::cout << "\n";
 
@@ -151,25 +167,26 @@ void    PhoneBook::search(void)
     std::string input;
     int dig;
 
-    std::cout << std::right << std::setw(10) << "index";
+    std::cout << "\033[2J\033[H" << std::right << std::setw(10) << "index";
     std::cout << " | " << std::setw(10) << std::right << "first name";
     std::cout << " | " << std::setw(10) << std::right << "last name";
-    std::cout << " | " << std::setw(10) << std::right << "nick name\n" << std::endl;
+    std::cout << " | " << std::setw(10) << std::right << "nick name" << std::endl;
 
     for (int i = 0; i < 8; i++)
     {
         std::cout << std::setw(10) << std::right << i;
         if (i < this->max_index)
         {
-            std::cout << " | " << std::setw(10) << std::right << truncate(this->Contacts[i].first_name);
-            std::cout << " | " << std::setw(10) << std::right << truncate(this->Contacts[i].last_name);
-            std::cout << " | " << std::setw(10) << std::right << truncate(this->Contacts[i].nickname);
+            std::cout << " | " << std::setw(10) << std::right << truncate(this->Contacts[i].get_fn());
+            std::cout << " | " << std::setw(10) << std::right << truncate(this->Contacts[i].get_ln());
+            std::cout << " | " << std::setw(10) << std::right << truncate(this->Contacts[i].get_nn());
         }
         else
             for (int i = 0; i < 3; i++)
                 std::cout << " | " << std::setw(10) << ' ';
         std::cout << std::endl;
     }
+    std::cout << std::endl;
     while (!valid_input)
     {
         std::cout << "enter index: ";

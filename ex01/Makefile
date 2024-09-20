@@ -6,7 +6,7 @@
 #    By: tecker <tecker@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/16 14:27:53 by tecker            #+#    #+#              #
-#    Updated: 2024/09/17 11:33:58 by tecker           ###   ########.fr        #
+#    Updated: 2024/09/20 11:31:50 by tecker           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ CC				=	c++
 # CFLAGS			=	-Wall -Werror -Wextra
 
 SRC_FILES		=	phonebook.cpp \
+					contact.cpp	\
 					main.cpp
 
 OBJ_DIR			=	./obj
