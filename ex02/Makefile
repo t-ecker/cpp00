@@ -6,19 +6,18 @@
 #    By: tomecker <tomecker@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/16 14:27:53 by tecker            #+#    #+#              #
-#    Updated: 2024/10/04 19:06:43 by tomecker         ###   ########.fr        #
+#    Updated: 2024/10/04 19:07:34 by tomecker         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			=	phonebook
+NAME			=	account
 
 CC				=	c++
 
 CFLAGS			=	-Wall -Werror -Wextra
 
-SRC_FILES		=	phonebook.cpp \
-					contact.cpp	\
-					main.cpp
+SRC_FILES		=	Account.cpp \
+					tests.cpp	\
 
 OBJ_DIR			=	./obj
 
