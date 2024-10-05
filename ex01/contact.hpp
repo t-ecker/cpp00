@@ -6,7 +6,7 @@
 /*   By: tecker <tecker@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 14:27:44 by tecker            #+#    #+#             */
-/*   Updated: 2024/09/20 11:23:31 by tecker           ###   ########.fr       */
+/*   Updated: 2024/09/20 13:02:09 by tecker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@
 
 class Contact
 {
-        std::string first_name;
-        std::string last_name;
-        std::string nickname;
-        std::string phonenumber;
-        std::string darkest_secret;
+    private:
+        std::string _first_name;
+        std::string _last_name;
+        std::string _nickname;
+        std::string _phonenumber;
+        std::string _darkest_secret;
 
     public:
         void    set_fn(const std::string fn);

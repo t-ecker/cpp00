@@ -6,7 +6,7 @@
 /*   By: tecker <tecker@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 14:27:57 by tecker            #+#    #+#             */
-/*   Updated: 2024/09/20 11:34:38 by tecker           ###   ########.fr       */
+/*   Updated: 2024/10/05 13:40:52 by tecker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,39 @@ int check_prompt(std::string    prompt)
         return (0);
 }
 
+int check_cin(void)
+{
+    if (std::cin.eof())
+    {
+        std::cout << "End of input detected. Exiting..." << std::endl;
+        exit(1);
+    }
+    if (std::cin.fail())
+    {
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "Invalid input. Please try again." << std::endl;
+        return (0);
+    }
+    return (1);
+}
+
 int PhoneBook::std_prompt(void)
 {
     std::string prompt;
 
     std::cout << "\033[2J\033[H" << "options:      SEARCH | ADD | EXIT\nchoose one: ";
     getline(std::cin, prompt);
+    if (!check_cin())
+        return (0);
     return (check_prompt(prompt));
 }
 
 int check_input(std::string input, int flag)
 {
     int len = input.length();
-    
+    if (!check_cin())
+        return (1);
     if (input.empty())
         return (1);
     for (int i = 0; i < len; i++)
@@ -156,6 +176,7 @@ void    PhoneBook::display_contact(int index)
     {
         std::cout << "press return to go back to menue";
         getline(std::cin, input);
+        check_cin();
         if (input.empty())
             break;        
     }
@@ -191,7 +212,7 @@ void    PhoneBook::search(void)
     {
         std::cout << "enter index: ";
         getline(std::cin, input);
-        if (input.empty() || check_input(input, 0))
+        if (check_input(input, 0) || input.empty())
             std::cout << "Invalid input. Please enter an integer." << std::endl;
         else
         {
